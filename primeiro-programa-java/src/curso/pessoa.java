@@ -9,6 +9,8 @@ public class pessoa {
 
 	
 	private Date dataNascimento3;
+	
+	private Date dataNascimento1;
 
 
 	public String getNome() {
