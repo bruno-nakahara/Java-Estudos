@@ -6,19 +6,21 @@ public class pessoa {
 	private String nome;
 	
 	private String sobrenome;
+
 	
-	private Date dataNascimento2;
+	private Date dataNascimento3;
+
 
 	public String getNome() {
 		return nome;
 	}
 
 	public Date getDataNascimento() {
-		return dataNascimento2;
+		return dataNascimento3;
 	}
 
 	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento2 = dataNascimento;
+		this.dataNascimento3 = dataNascimento;
 	}
 
 	public void setNome(String nome) {
