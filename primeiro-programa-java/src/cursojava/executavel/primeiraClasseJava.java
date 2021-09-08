@@ -1,29 +1,21 @@
 package cursojava.executavel;
 
+import javax.swing.JOptionPane;
+
 public class primeiraClasseJava {
     
 	/* main é um método auto executável em java */
 	public static void main(String[] args) {
-		double nota1 = 2;
-		double nota2 = 6;
-		double mediaAluno = (nota1 + nota2) / 2;
 		
-		if (mediaAluno >= 7) {
-			System.out.println("Aprovado - Nota final: " + mediaAluno);
-		} else if (mediaAluno >= 5 && mediaAluno < 7) {
-			System.out.println("Recuperação");
-		} else {
-			System.out.println("Reprovado");
-		}
 		
-		/* Operadores ternários - são para micro validações*/
+		String textos = JOptionPane.showInputDialog("Informe o número do carro.");
 		
-		String resultadoAluno;
+		double carroNumero = Double.parseDouble(textos);
 		
-		resultadoAluno = mediaAluno >= 7 ? "Aprovado" : (mediaAluno >= 5 && mediaAluno < 7) ? "Recuperação" : "Reprovado";
+		double preçoCarro = carroNumero * 20000;
 		
-		System.out.println(resultadoAluno);
 		
+		JOptionPane.showMessageDialog(null, "O preço do carro:(R$) " + preçoCarro);
 		
 	}
 }
