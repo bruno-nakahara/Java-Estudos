@@ -2,20 +2,20 @@ package cursojava.executavel;
 
 import javax.swing.JOptionPane;
 
+import cursojava.classes.Student;
+
 public class primeiraClasseJava {
     
 	/* main é um método auto executável em java */
 	public static void main(String[] args) {
 		
+		Student aluno1 = new Student();
 		
-		String textos = JOptionPane.showInputDialog("Informe o número do carro.");
+		Student aluno2 = new Student();
 		
-		double carroNumero = Double.parseDouble(textos);
+		Student aluno3 = new Student("Bruno");
 		
-		double preçoCarro = carroNumero * 20000;
-		
-		
-		JOptionPane.showMessageDialog(null, "O preço do carro:(R$) " + preçoCarro);
+		System.out.println(aluno3);
 		
 	}
 }
