@@ -13,9 +13,13 @@ public class Student {
 	private String educationLevel;
 	
 	private double nota1;
+	private String course1;
 	private double nota2;
+	private String course2;
 	private double nota3;
+	private String course3;
 	private double nota4;
+	private String course4;
 	
 	public Student() {
 		
@@ -137,7 +141,62 @@ public class Student {
 		this.nota4 = nota4;
 	}
 	
+	public String getCourse1() {
+		return course1;
+	}
+
+	public void setCourse1(String course1) {
+		this.course1 = course1;
+	}
+
+	public String getCourse2() {
+		return course2;
+	}
+
+	public void setCourse2(String course2) {
+		this.course2 = course2;
+	}
+
+	public String getCourse3() {
+		return course3;
+	}
+
+	public void setCourse3(String course3) {
+		this.course3 = course3;
+	}
+
+	public String getCourse4() {
+		return course4;
+	}
+
+	public void setCourse4(String course4) {
+		this.course4 = course4;
+	}
+
 	public double getStudentScore() {
 		return (nota1 + nota2 + nota3 + nota4) / 4;
 	}
+	
+	public boolean getStudentApproved() {
+		double score = this.getStudentScore(); 
+		
+		if (score >= 7) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", birthday=" + birthday + ", id=" + id + ", cpfNumber="
+				+ cpfNumber + ", motherName=" + motherName + ", fatherName=" + fatherName + ", registrationDate="
+				+ registrationDate + ", schoolName=" + schoolName + ", educationLevel=" + educationLevel + ", nota1="
+				+ nota1 + ", course1=" + course1 + ", nota2=" + nota2 + ", course2=" + course2 + ", nota3=" + nota3
+				+ ", course3=" + course3 + ", nota4=" + nota4 + ", course4=" + course4 + "]";
+	}
+
+	
+	
+	
 }
