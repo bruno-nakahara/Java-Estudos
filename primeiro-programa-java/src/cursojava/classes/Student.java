@@ -1,5 +1,9 @@
 package cursojava.classes;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Student {
 	private String name;
 	private int age;
@@ -12,14 +16,15 @@ public class Student {
 	private String schoolName;
 	private String educationLevel;
 	
-	private double nota1;
-	private String course1;
-	private double nota2;
-	private String course2;
-	private double nota3;
-	private String course3;
-	private double nota4;
-	private String course4;
+	private List<Course> courses = new ArrayList<Course>();
+	
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
 	
 	public Student() {
 		
@@ -109,72 +114,15 @@ public class Student {
 		this.educationLevel = educationLevel;
 	}
 
-	public double getNota1() {
-		return nota1;
-	}
-
-	public void setNota1(double nota1) {
-		this.nota1 = nota1;
-	}
-
-	public double getNota2() {
-		return nota2;
-	}
-
-	public void setNota2(double nota2) {
-		this.nota2 = nota2;
-	}
-
-	public double getNota3() {
-		return nota3;
-	}
-
-	public void setNota3(double nota3) {
-		this.nota3 = nota3;
-	}
-
-	public double getNota4() {
-		return nota4;
-	}
-
-	public void setNota4(double nota4) {
-		this.nota4 = nota4;
-	}
-	
-	public String getCourse1() {
-		return course1;
-	}
-
-	public void setCourse1(String course1) {
-		this.course1 = course1;
-	}
-
-	public String getCourse2() {
-		return course2;
-	}
-
-	public void setCourse2(String course2) {
-		this.course2 = course2;
-	}
-
-	public String getCourse3() {
-		return course3;
-	}
-
-	public void setCourse3(String course3) {
-		this.course3 = course3;
-	}
-
-	public String getCourse4() {
-		return course4;
-	}
-
-	public void setCourse4(String course4) {
-		this.course4 = course4;
-	}
-
 	public double getStudentScore() {
-		return (nota1 + nota2 + nota3 + nota4) / 4;
+		
+		double sumScore = 0;
+		
+		for (Course course : courses) {
+			sumScore += course.getNota1();
+		}
+		
+		return sumScore / courses.size();
 	}
 	
 	public boolean getStudentApproved() {
@@ -188,15 +136,29 @@ public class Student {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return Objects.equals(name, other.name);
+	}
+
+	@Override
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", birthday=" + birthday + ", id=" + id + ", cpfNumber="
 				+ cpfNumber + ", motherName=" + motherName + ", fatherName=" + fatherName + ", registrationDate="
-				+ registrationDate + ", schoolName=" + schoolName + ", educationLevel=" + educationLevel + ", nota1="
-				+ nota1 + ", course1=" + course1 + ", nota2=" + nota2 + ", course2=" + course2 + ", nota3=" + nota3
-				+ ", course3=" + course3 + ", nota4=" + nota4 + ", course4=" + course4 + "]";
+				+ registrationDate + ", schoolName=" + schoolName + ", educationLevel=" + educationLevel + "]";
 	}
-
 	
 	
-	
+		
 }

@@ -2,6 +2,7 @@ package cursojava.executavel;
 
 import javax.swing.JOptionPane;
 
+import cursojava.classes.Course;
 import cursojava.classes.Student;
 
 public class primeiraClasseJava {
@@ -19,14 +20,7 @@ public class primeiraClasseJava {
 		String registrationDate = JOptionPane.showInputDialog("Data da matricula");
 		String educationLevel = JOptionPane.showInputDialog("Série matriculado");
 		String schoolName = JOptionPane.showInputDialog("Nome da escola");
-		String course1 = JOptionPane.showInputDialog("Nome da disciplina 1");
-		String nota1 = JOptionPane.showInputDialog("Nota1");
-		String course2 = JOptionPane.showInputDialog("Nome da disciplina 2");
-		String nota2 = JOptionPane.showInputDialog("Nota2");
-		String course3 = JOptionPane.showInputDialog("Nome da disciplina 3");
-		String nota3 = JOptionPane.showInputDialog("Nota3");
-		String course4 = JOptionPane.showInputDialog("Nome da disciplina 4");
-		String nota4 = JOptionPane.showInputDialog("Nota4");
+
 		
 		Student aluno1 = new Student();
 		aluno1.setName(name);
@@ -39,14 +33,24 @@ public class primeiraClasseJava {
 		aluno1.setRegistrationDate(registrationDate);
 		aluno1.setEducationLevel(educationLevel);
 		aluno1.setSchoolName(schoolName);
-		aluno1.setNota1(Double.parseDouble(nota1));
-		aluno1.setNota2(Double.parseDouble(nota2));
-		aluno1.setNota3(Double.parseDouble(nota3));
-		aluno1.setNota4(Double.parseDouble(nota4));
-		aluno1.setCourse1(course1);
-		aluno1.setCourse2(course2);
-		aluno1.setCourse3(course3);
-		aluno1.setCourse4(course4);
+		
+		for (int pos = 1; pos <= 4; pos++) {
+			String courseName = JOptionPane.showInputDialog("Nome da matéria" + pos);
+			String courseScore = JOptionPane.showInputDialog("Nota da matéria" + pos);
+			
+			Course course = new Course();
+			course.setCourse1(courseName);
+			course.setNota1(Double.valueOf(courseScore));
+			
+			aluno1.getCourses().add(course);
+		}
+		
+		int checkDeleteCourse = JOptionPane.showConfirmDialog(null, "Deseja remover alguma matéria?");
+		
+		if (checkDeleteCourse == 0) {
+			String removerCourse = JOptionPane.showInputDialog("Qual matéria gostaria de remover 1, 2, 3 e 4?");
+			aluno1.getCourses().remove(Integer.valueOf(removerCourse).intValue() - 1);
+		}
 		
 		System.out.println("Nome: " + aluno1.getName());
 		System.out.println("Idade: " + aluno1.getAge());
