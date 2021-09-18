@@ -125,13 +125,19 @@ public class Student {
 		return sumScore / courses.size();
 	}
 	
-	public boolean getStudentApproved() {
+	public String getStudentApproved() {
 		double score = this.getStudentScore(); 
 		
-		if (score >= 7) {
-			return true;
+		if (score >= 5) {
+			
+			if (score >= 7) {
+				return "Aprovado";
+			} else {
+				return "Recuperação";
+			}
+			
 		} else {
-			return false;
+			return "Reprovado";
 		}
 	}
 
