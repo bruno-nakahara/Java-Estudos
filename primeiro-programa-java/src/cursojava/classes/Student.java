@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cursojava.constantes.StatusStudent;
+
 public class Student {
 	private String name;
 	private int age;
@@ -131,13 +133,13 @@ public class Student {
 		if (score >= 5) {
 			
 			if (score >= 7) {
-				return "Aprovado";
+				return StatusStudent.APPROVED;
 			} else {
-				return "Recuperação";
+				return StatusStudent.RETAKE;
 			}
 			
 		} else {
-			return "Reprovado";
+			return StatusStudent.FAILED;
 		}
 	}
 
