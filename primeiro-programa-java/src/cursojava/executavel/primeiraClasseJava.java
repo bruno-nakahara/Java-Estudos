@@ -76,19 +76,30 @@ public class primeiraClasseJava {
 		for (Student student : students) {
 			
 			if (student.getName().equalsIgnoreCase("Alex")) {
-				System.out.println("Existe Alex!");
+				students.remove(student);
+				break;
+			} else {
+				System.out.println(student);
+				System.out.println("Nome: " + student.getName());
+				System.out.println("Idade: " + student.getAge());
+				System.out.println("Data de nascimento: " + student.getBirthday());
+				System.out.println("RG: " + student.getId());
+				System.out.println("Média do " + student.getName() + ": " + student.getStudentScore());
+				System.out.println("Aluno1: " + (student.getStudentApproved()));
+				
+				System.out.println(student.toString());
+				System.out.println("----------------------------------------------------------------------");
 			}
+						
+		}
+		
+		for (Student student : students) {
+			System.out.println(student.getName());
+			System.out.println("As matérias são: ");
 			
-			System.out.println(student);
-			System.out.println("Nome: " + student.getName());
-			System.out.println("Idade: " + student.getAge());
-			System.out.println("Data de nascimento: " + student.getBirthday());
-			System.out.println("RG: " + student.getId());
-			System.out.println("Média do " + student.getName() + ": " + student.getStudentScore());
-			System.out.println("Aluno1: " + (student.getStudentApproved()));
-			
-			System.out.println(student.toString());
-			System.out.println("----------------------------------------------------------------------");
+			for (Course course : student.getCourses() ) {
+				System.out.println(course.getCourse1());
+			}
 		}
 		
 		
