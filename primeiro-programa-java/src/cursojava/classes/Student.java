@@ -6,14 +6,8 @@ import java.util.Objects;
 
 import cursojava.constantes.StatusStudent;
 
-public class Student {
-	private String name;
-	private int age;
-	private String birthday;
-	private String id;
-	private String cpfNumber;
-	private String motherName;
-	private String fatherName;
+public class Student extends People {
+	
 	private String registrationDate;
 	private String schoolName;
 	private String educationLevel;
