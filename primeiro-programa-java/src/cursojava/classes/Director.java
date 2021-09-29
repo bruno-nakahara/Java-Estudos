@@ -24,5 +24,20 @@ public class Director extends People {
 		this.degree = degree;
 	}
 	
+	@Override
+	public String toString() {
+		return "Director [educationRegister=" + educationRegister + ", timeDirection=" + timeDirection + ", degree="
+				+ degree + ", name=" + name + ", age=" + age + ", birthday=" + birthday + ", id=" + id + ", cpfNumber="
+				+ cpfNumber + ", motherName=" + motherName + ", fatherName=" + fatherName + "]";
+	}
+	
+	@Override
+	public double salary() {
+		// TODO Auto-generated method stub
+		return 3900.78;
+	}
+	
+	
+	
 	
 }

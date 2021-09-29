@@ -1,6 +1,6 @@
 package cursojava.classes;
 
-public class People {
+public abstract class People {
 	protected String name;
 	protected int age;
 	protected String birthday;
@@ -8,6 +8,8 @@ public class People {
 	protected String cpfNumber;
 	protected String motherName;
 	protected String fatherName;
+	
+	public abstract double salary();// as classes filhas tem implementar o método
 	
 	public String getName() {
 		return name;
@@ -53,4 +55,7 @@ public class People {
 	}
 	
 	
+	public boolean adultAge() {
+		return age >= 18;
+	}
 }

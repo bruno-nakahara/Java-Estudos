@@ -161,6 +161,19 @@ public class Student extends People {
 				+ registrationDate + ", schoolName=" + schoolName + ", educationLevel=" + educationLevel + "]";
 	}
 	
-	
+	@Override
+	public boolean adultAge() {
 		
+		return age >= 21;
+	}
+		
+	public String msgAdultAge() {
+		return this.adultAge() ? "Maior de idaide" : "Menor";
+	}
+
+	@Override
+	public double salary() {
+		// TODO Auto-generated method stub
+		return 1500.90;
+	}
 }
