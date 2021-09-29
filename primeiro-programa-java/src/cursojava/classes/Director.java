@@ -1,9 +1,22 @@
 package cursojava.classes;
 
-public class Director extends People {
+import cursojava.interfaces.AccessPermission;
+
+public class Director extends People implements AccessPermission {
 	private String educationRegister;
 	private int timeDirection;
 	private String degree;
+	
+	private String login;
+	private String password;
+	
+	public Director(String login, String password) {	
+		this.login = login;
+		this.password = password;
+	}
+	
+	public Director() {	
+	}
 	
 	public String getEducationRegister() {
 		return educationRegister;
@@ -37,7 +50,17 @@ public class Director extends People {
 		return 3900.78;
 	}
 	
+	@Override
+	public boolean authentic(String login, String password) {
+		this.login = login;
+		this.password = password;
+		
+		return authentic();
+	}	
 	
-	
+	@Override
+	public boolean authentic() {
+		return login.equals("bruno") && password.equals("123");
+	}
 	
 }

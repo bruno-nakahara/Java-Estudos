@@ -1,10 +1,23 @@
 package cursojava.classes;
 
-public class Secretary extends People {
+import cursojava.interfaces.AccessPermission;
+
+public class Secretary extends People implements AccessPermission {
 	
 	private String register;
 	private String jobLevel;
-	private String experience;
+	private String experience;	
+	
+	private String login;
+	private String password;
+	
+	public Secretary(String login, String password) {	
+		this.login = login;
+		this.password = password;
+	}
+	
+	public Secretary() {	
+	}
 	
 	public String getRegister() {
 		return register;
@@ -34,9 +47,19 @@ public class Secretary extends People {
 	
 	@Override
 	public double salary() {
-		// TODO Auto-generated method stub
 		return 1800.80 * 0.9;
 	}
 	
+	@Override
+	public boolean authentic(String login, String password) {
+		this.login = login;
+		this.password = password;
+		
+		return authentic();
+	}	
 	
+	@Override
+	public boolean authentic() {
+		return login.equals("admin") && password.equals("admin");
+	}
 }
