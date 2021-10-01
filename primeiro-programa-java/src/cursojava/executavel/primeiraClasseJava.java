@@ -19,17 +19,17 @@ public class primeiraClasseJava {
     
 	/* main é um método auto executável em java */
 	public static void main(String[] args) {
-		
+		try {
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String password = JOptionPane.showInputDialog("Informe a senha");
 		
-		if (new AccessFunction(new Director(login, password)).authentic()) {
-					
+		if (new AccessFunction(new Secretary(login, password)).authentic()) {
+						
 			List<Student> students = new ArrayList<Student>();
 			
 			HashMap<String, List<Student>> maps = new HashMap<String, List<Student>>();
 			
-			for (int studentQuantity = 1; studentQuantity <= 5; studentQuantity++) {
+			for (int studentQuantity = 1; studentQuantity <= 1; studentQuantity++) {
 	
 				String name = JOptionPane.showInputDialog("Qual o nome do aluno " + studentQuantity + "?");/*
 				String age = JOptionPane.showInputDialog("Qual a idade?");
@@ -121,6 +121,17 @@ public class primeiraClasseJava {
 			JOptionPane.showMessageDialog(null, "Acesso negado!"
 					+ ""
 					+ "");
+		}
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "catch null error");
+		} catch (NumberFormatException err) {
+			// TODO: handle exception
+			err.printStackTrace();
+			JOptionPane.showMessageDialog(null, "catch number format error");
+		} finally {
+			//sempre é executado ocorrendo erro ou não
+			System.out.println("Finalmente");
 		}
 	}
 }
