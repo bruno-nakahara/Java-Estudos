@@ -1,11 +1,15 @@
 package cursojava.executavel;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import curso.java.exception.ExceptionProcessScore;
 import cursojava.classes.Course;
 import cursojava.classes.Director;
 import cursojava.classes.Secretary;
@@ -20,6 +24,9 @@ public class primeiraClasseJava {
 	/* main é um método auto executável em java */
 	public static void main(String[] args) {
 		try {
+		
+		//readFile();
+			
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String password = JOptionPane.showInputDialog("Informe a senha");
 		
@@ -129,9 +136,18 @@ public class primeiraClasseJava {
 			// TODO: handle exception
 			err.printStackTrace();
 			JOptionPane.showMessageDialog(null, "catch number format error");
-		} finally {
-			//sempre é executado ocorrendo erro ou não
+		}/* catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/ finally {
+			//sempre é executado ocorrendo erro ou não.
+			//Utilizado quando precisar executar um processo acontecendo erro ou não
 			System.out.println("Finalmente");
 		}
+	}
+	
+	public static void readFile() throws FileNotFoundException {
+	
+		File file = new File("c://lines.txt");
+		Scanner scanner = new Scanner(file);
 	}
 }
