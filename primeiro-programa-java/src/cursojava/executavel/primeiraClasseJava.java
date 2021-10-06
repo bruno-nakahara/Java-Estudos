@@ -68,7 +68,7 @@ public class primeiraClasseJava {
 					
 					Course course = new Course();
 					course.setCourse1(courseName);
-					course.setNota1(Double.valueOf(courseScore));
+					course.setNota(Double.valueOf(courseScore));
 					
 					aluno.getCourses().add(course);
 				}

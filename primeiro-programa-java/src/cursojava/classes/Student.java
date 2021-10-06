@@ -115,7 +115,7 @@ public class Student extends People {
 		double sumScore = 0;
 		
 		for (Course course : courses) {
-			sumScore += course.getNota1();
+			sumScore += course.getNotaMedia();
 		}
 		
 		return sumScore / courses.size();
