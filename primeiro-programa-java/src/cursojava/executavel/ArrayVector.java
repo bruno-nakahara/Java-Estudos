@@ -28,34 +28,20 @@ public class ArrayVector {
 		
 		student.getCourses().add(course2);
 		
-		System.out.println("Aluno " + student.getName() + " inscrito no curso " + student.getSchoolName());
+		Student[] arrayStudents = new Student[1];
 		
-		for (Course courseList : student.getCourses()) {
+		arrayStudents[0] = student;
+		
+		for (int pos = 0; pos < arrayStudents.length; pos++) {
+			System.out.println(arrayStudents[pos].getName());
 			
-			System.out.println("Curso " + courseList.getCourse1());
-			System.out.println("As notas:");
-			
-			double maxScore = 0.0;
-			double minScore = 0.0;
-			for (int pos = 0; pos < courseList.getNota().length; pos++) {	
-				System.out.println(courseList.getNota()[pos]);
+			for (Course courseList : arrayStudents[pos].getCourses()) {
+				System.out.println(courseList.getCourse1());
 				
-				if (pos == 0) {
-					maxScore = courseList.getNota()[pos];
-					minScore = courseList.getNota()[pos];
-				} else {
-					if (courseList.getNota()[pos] > maxScore) {
-						maxScore = courseList.getNota()[pos];
-					}
-					if (courseList.getNota()[pos] < minScore) {
-						minScore = courseList.getNota()[pos];
-					}
+				for (int posScore = 0; posScore < courseList.getNota().length; posScore++) {
+					System.out.println(courseList.getNota()[posScore]);
 				}
 			}
-			System.out.println("Maior nota do curso " + courseList.getCourse1() + " é igual " + maxScore);
-			System.out.println("Menor nota do curso " + courseList.getCourse1() + " é igual " + minScore);
-			System.out.println("Média: " + courseList.getNotaMedia());
 		}
-		
 	}
 }
