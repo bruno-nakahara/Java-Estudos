@@ -20,54 +20,16 @@ public class TelaTimeThread extends JDialog {
 	
 	private JPanel jPanel = new JPanel(new GridBagLayout());//Painel de componentes
 	
-	private JLabel hour = new JLabel("Time Thread 1");
+	private JLabel hour = new JLabel("Nome:");
 	private JTextField showTime = new JTextField();
 	
-	private JLabel hour2 = new JLabel("Time Thread 2");
+	private JLabel hour2 = new JLabel("E-mail:");
 	private JTextField showTime2 = new JTextField();
 	
-	private JButton jButtonStart = new JButton("Start");
+	private JButton jButtonAdd = new JButton("Add");
 	private JButton jButtonStop = new JButton("Stop");
-	private JButton jButtonRestart = new JButton("Restart");
 	
-	private Runnable thread1 = new Runnable() {
-		
-		@Override
-		public void run() {
-			while(true) {
-				showTime.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
-	};
-	
-	private Runnable thread2 = new Runnable() {
-		
-		@Override
-		public void run() {
-			while(true) {
-				showTime2.setText(new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(Calendar.getInstance().getTime()));
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
-	};
-	
-	private Thread thread1Time;
-	private Thread thread2Time;
+	private ImplementQueueThread queue = new ImplementQueueThread();
 	
 	public TelaTimeThread() {
 		// TODO Auto-generated constructor stub
@@ -89,7 +51,6 @@ public class TelaTimeThread extends JDialog {
 		
 		showTime.setPreferredSize(new Dimension(200, 25));
 		gridBagConstraints.gridy ++;
-		showTime.setEditable(false);
 		jPanel.add(showTime, gridBagConstraints);
 		
 		hour2.setPreferredSize(new Dimension(200, 25));
@@ -97,68 +58,47 @@ public class TelaTimeThread extends JDialog {
 		jPanel.add(hour2, gridBagConstraints);
 		
 		showTime2.setPreferredSize(new Dimension(200, 25));
-		showTime2.setEditable(false);
 		gridBagConstraints.gridy ++;
 		jPanel.add(showTime2, gridBagConstraints);
 		
 		gridBagConstraints.gridwidth = 1;
 		
-		jButtonStart.setPreferredSize(new Dimension(92, 25));
+		jButtonAdd.setPreferredSize(new Dimension(92, 25));
 		gridBagConstraints.gridy ++;
-		jPanel.add(jButtonStart, gridBagConstraints);
+		jPanel.add(jButtonAdd, gridBagConstraints);
 		
 		jButtonStop.setPreferredSize(new Dimension(92, 25));
 		gridBagConstraints.gridx ++;
 		jPanel.add(jButtonStop, gridBagConstraints);
 		
-		jButtonRestart.setPreferredSize(new Dimension(92, 25));
-		gridBagConstraints.gridy ++;
-		jPanel.add(jButtonRestart, gridBagConstraints);
-		
-		jButtonRestart.addActionListener(new ActionListener() {
-			
+		jButtonAdd.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				showTime2.setText("");
-				showTime.setText("");
+				
+				if (queue == null) {
+					queue = new ImplementQueueThread();
+					queue.start();
+				}
+				
+				for(int qtd = 0; qtd < 50; qtd++) {
+					ObjectQueueThread queueThread = new ObjectQueueThread();
+					queueThread.setName(showTime.getText());
+					queueThread.setEmail(showTime2.getText() + " - " + qtd);
+					
+					queue.add(queueThread);
+				}
 			}
 		});
 		
-		jButtonStart.addActionListener(new ActionListener() {
-			
+		jButtonStop.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				thread1Time = new Thread(thread1);
-				thread1Time.start();
-				
-				thread2Time = new Thread(thread2);
-				thread2Time.start();
-				
-				jButtonStop.setEnabled(true);
-				jButtonStart.setEnabled(false);
-				jButtonRestart.setEnabled(false);
+				queue.stop();
+				queue = null;
 			}
 		});
 		
-		jButtonStop.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				thread1Time.stop();
-				thread2Time.stop();
-				
-				jButtonStop.setEnabled(false);
-				jButtonStart.setEnabled(true);
-				jButtonRestart.setEnabled(true);
-			}
-		});
-		
-		jButtonStop.setEnabled(false);
-		jButtonRestart.setEnabled(false);
-		
+		queue.start();
 		add(jPanel, BorderLayout.WEST);
 		//Sempre será ultimo comando
 		setVisible(true);//Torna a tela visivel
